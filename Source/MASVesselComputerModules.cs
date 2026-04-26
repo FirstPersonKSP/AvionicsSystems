@@ -828,6 +828,9 @@ namespace AvionicsSystems
         internal bool anyRcsFiring = false;
         internal bool anyRcsRotate = false;
         internal bool anyRcsTranslate = false;
+        internal bool anyRcsPitch = false;
+        internal bool anyRcsYaw = false;
+        internal bool anyRcsRoll = false;
         internal float rcsWeightedThrustLimit;
         internal float rcsActiveThrustPercent;
         private void UpdateRcs()
@@ -836,6 +839,9 @@ namespace AvionicsSystems
             anyRcsFiring = false;
             anyRcsRotate = false;
             anyRcsTranslate = false;
+            anyRcsPitch = false;
+            anyRcsYaw = false;
+            anyRcsRoll = false;
             float netThrust = 0.0f;
             rcsWeightedThrustLimit = 0.0f;
             rcsActiveThrustPercent = 0.0f;
@@ -856,6 +862,18 @@ namespace AvionicsSystems
                     if (moduleRcs[i].enableRoll || moduleRcs[i].enableYaw || moduleRcs[i].enablePitch)
                     {
                         anyRcsRotate = true;
+                    }
+                    if (moduleRcs[i].enablePitch)
+                    {
+                        anyRcsPitch = true;
+                    }
+                    if (moduleRcs[i].enableYaw)
+                    {
+                        anyRcsYaw = true;
+                    }
+                    if (moduleRcs[i].enableRoll)
+                    {
+                        anyRcsRoll = true;
                     }
                     if (moduleRcs[i].rcs_active)
                     {

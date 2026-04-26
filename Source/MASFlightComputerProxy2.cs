@@ -4022,6 +4022,152 @@ namespace AvionicsSystems
                 return 1.0;
             }
         }
+        /// <summary>
+        /// Returns 1 if any RCS thrusters are configured to allow pitch control,
+        /// 0 otherwise.
+        /// </summary>
+        /// <returns></returns>
+        public double GetRCSPitch()
+        {
+            return (vc.anyRcsPitch) ? 1.0 : 0.0;
+        }
+
+        /// <summary>
+        /// Returns 1 if any RCS thrusters are configured to allow yaw control,
+        /// 0 otherwise.
+        /// </summary>
+        /// <returns></returns>
+        public double GetRCSYaw()
+        {
+            return (vc.anyRcsYaw) ? 1.0 : 0.0;
+        }
+
+        /// <summary>
+        /// Returns 1 if any RCS thrusters are configured to allow roll control,
+        /// 0 otherwise.
+        /// </summary>
+        /// <returns></returns>
+        public double GetRCSRoll()
+        {
+            return (vc.anyRcsRoll) ? 1.0 : 0.0;
+        }
+
+        /// <summary>
+        /// Enable or disable RCS pitch control.
+        /// </summary>
+        /// <param name="active">Whether RCS should be used for pitch.</param>
+        /// <returns>The number of RCS modules updated.</returns>
+        public double SetRCSPitch(bool active)
+        {
+            for (int i = vc.moduleRcs.Length - 1; i >= 0; --i)
+            {
+                vc.moduleRcs[i].enablePitch = active;
+            }
+
+            return vc.moduleRcs.Length;
+        }
+
+        /// <summary>
+        /// Enable or disable RCS yaw control.
+        /// </summary>
+        /// <param name="active">Whether RCS should be used for yaw.</param>
+        /// <returns>The number of RCS modules updated.</returns>
+        public double SetRCSYaw(bool active)
+        {
+            for (int i = vc.moduleRcs.Length - 1; i >= 0; --i)
+            {
+                vc.moduleRcs[i].enableYaw = active;
+            }
+
+            return vc.moduleRcs.Length;
+        }
+
+        /// <summary>
+        /// Enable or disable RCS roll control.
+        /// </summary>
+        /// <param name="active">Whether RCS should be used for roll.</param>
+        /// <returns>The number of RCS modules updated.</returns>
+        public double SetRCSRoll(bool active)
+        {
+            for (int i = vc.moduleRcs.Length - 1; i >= 0; --i)
+            {
+                vc.moduleRcs[i].enableRoll = active;
+            }
+
+            return vc.moduleRcs.Length;
+        }
+
+        /// <summary>
+        /// Toggle RCS pitch control.
+        /// </summary>
+        /// <returns>1 if pitch is now on, 0 otherwise.</returns>
+        public double ToggleRCSPitch()
+        {
+            if (vc.anyRcsPitch)
+            {
+                for (int i = vc.moduleRcs.Length - 1; i >= 0; --i)
+                {
+                    vc.moduleRcs[i].enablePitch = false;
+                }
+                return 0.0;
+            }
+            else
+            {
+                for (int i = vc.moduleRcs.Length - 1; i >= 0; --i)
+                {
+                    vc.moduleRcs[i].enablePitch = true;
+                }
+                return 1.0;
+            }
+        }
+
+        /// <summary>
+        /// Toggle RCS yaw control.
+        /// </summary>
+        /// <returns>1 if yaw is now on, 0 otherwise.</returns>
+        public double ToggleRCSYaw()
+        {
+            if (vc.anyRcsYaw)
+            {
+                for (int i = vc.moduleRcs.Length - 1; i >= 0; --i)
+                {
+                    vc.moduleRcs[i].enableYaw = false;
+                }
+                return 0.0;
+            }
+            else
+            {
+                for (int i = vc.moduleRcs.Length - 1; i >= 0; --i)
+                {
+                    vc.moduleRcs[i].enableYaw = true;
+                }
+                return 1.0;
+            }
+        }
+
+        /// <summary>
+        /// Toggle RCS roll control.
+        /// </summary>
+        /// <returns>1 if roll is now on, 0 otherwise.</returns>
+        public double ToggleRCSRoll()
+        {
+            if (vc.anyRcsRoll)
+            {
+                for (int i = vc.moduleRcs.Length - 1; i >= 0; --i)
+                {
+                    vc.moduleRcs[i].enableRoll = false;
+                }
+                return 0.0;
+            }
+            else
+            {
+                for (int i = vc.moduleRcs.Length - 1; i >= 0; --i)
+                {
+                    vc.moduleRcs[i].enableRoll = true;
+                }
+                return 1.0;
+            }
+        }
         #endregion RCS
 
         /// <summary>

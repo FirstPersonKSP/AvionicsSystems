@@ -4022,32 +4022,21 @@ namespace AvionicsSystems
                 return 1.0;
             }
         }
-        /// <summary>
-        /// Returns 1 if any RCS thrusters are configured to allow pitch control,
-        /// 0 otherwise.
-        /// </summary>
-        /// <returns></returns>
-        public double GetRCSPitch()
+
+        /// <returns>1 if any RCS thrusters are configured to allow pitch control, 0 otherwise.</returns>
+        public double GetRCSPitchEnabled()
         {
             return (vc.anyRcsPitch) ? 1.0 : 0.0;
         }
 
-        /// <summary>
-        /// Returns 1 if any RCS thrusters are configured to allow yaw control,
-        /// 0 otherwise.
-        /// </summary>
-        /// <returns></returns>
-        public double GetRCSYaw()
+        /// <returns>1 if any RCS thrusters are configured to allow yaw control, 0 otherwise.</returns>
+        public double GetRCSYawEnabled()
         {
             return (vc.anyRcsYaw) ? 1.0 : 0.0;
         }
 
-        /// <summary>
-        /// Returns 1 if any RCS thrusters are configured to allow roll control,
-        /// 0 otherwise.
-        /// </summary>
-        /// <returns></returns>
-        public double GetRCSRoll()
+        /// <returns>1 if any RCS thrusters are configured to allow roll control, 0 otherwise.</returns>
+        public double GetRCSRollEnabled()
         {
             return (vc.anyRcsRoll) ? 1.0 : 0.0;
         }
@@ -4057,7 +4046,7 @@ namespace AvionicsSystems
         /// </summary>
         /// <param name="active">Whether RCS should be used for pitch.</param>
         /// <returns>The number of RCS modules updated.</returns>
-        public double SetRCSPitch(bool active)
+        public double SetRCSPitchEnabled(bool active)
         {
             for (int i = vc.moduleRcs.Length - 1; i >= 0; --i)
             {
@@ -4072,7 +4061,7 @@ namespace AvionicsSystems
         /// </summary>
         /// <param name="active">Whether RCS should be used for yaw.</param>
         /// <returns>The number of RCS modules updated.</returns>
-        public double SetRCSYaw(bool active)
+        public double SetRCSYawEnabled(bool active)
         {
             for (int i = vc.moduleRcs.Length - 1; i >= 0; --i)
             {
@@ -4087,7 +4076,7 @@ namespace AvionicsSystems
         /// </summary>
         /// <param name="active">Whether RCS should be used for roll.</param>
         /// <returns>The number of RCS modules updated.</returns>
-        public double SetRCSRoll(bool active)
+        public double SetRCSRollEnabled(bool active)
         {
             for (int i = vc.moduleRcs.Length - 1; i >= 0; --i)
             {

@@ -259,7 +259,7 @@ namespace AvionicsSystems
             {
                 float distA = Vector3.SqrMagnitude(a.GetTransform().position - vesselPosition);
                 float distB = Vector3.SqrMagnitude(b.GetTransform().position - vesselPosition);
-                return (int)(distA - distB);
+                return distA.CompareTo(distB);
             }
         }
 

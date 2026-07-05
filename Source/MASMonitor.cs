@@ -345,6 +345,30 @@ namespace AvionicsSystems
         }
 
         /// <summary>
+        /// Disable the screen camera when the IVA becomes inactive (e.g. on EVA or vessel switch).
+        /// Without this, the camera renders to the main screen with its opaque-black SolidColor
+        /// clear, wiping the skybox and scaled-space bodies every frame.
+        /// </summary>
+        public override void OnBecomeInactive()
+        {
+            if (screenCamera != null)
+            {
+                screenCamera.enabled = false;
+            }
+        }
+
+        /// <summary>
+        /// Re-enable the screen camera when the IVA becomes active again.
+        /// </summary>
+        public override void OnBecomeActive()
+        {
+            if (screenCamera != null)
+            {
+                screenCamera.enabled = true;
+            }
+        }
+
+        /// <summary>
         /// Just in case we lose context.
         /// </summary>
         public override void OnUpdate()
